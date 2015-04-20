@@ -11,12 +11,19 @@ class Van
 
   def collect_broken_bikes_from(location)
     location.bikes.each do |bike|
-      transfer(bike, to: location) if bike.broken?
+      transfer_from(bike, from: location) if bike.broken?
     end
   end
 
-  def transfer bike, to: location
-      to.release(bike)
-      accept bike
+  def release_broken_bikes_to(location)
+    bikes.each do |bike|
+      release(bike)
+      location.accept(bike)
+    end
+  end
+
+  def transfer_from bike, from: location
+    from.release(bike)
+    accept bike
   end
 end

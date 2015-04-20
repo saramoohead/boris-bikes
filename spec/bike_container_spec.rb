@@ -13,7 +13,7 @@ describe BikeContainer do
 
   let(:holder) { BikeHolder.new }
   let(:capacity) { 10 }
-  let(:bike) { double :bike, broken?: false, :class => Bike }
+  let(:bike) { double :bike, broken?: false }
   let(:broken_bike) { double :broken_bike, broken?: true }
 
   it 'can store a bike' do
