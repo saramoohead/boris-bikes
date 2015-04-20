@@ -21,6 +21,6 @@ class DockingStation
   end
 
   def full?
-    true if @station.count >= @capacity
+    true if bike_count >= @capacity
   end
 end
