@@ -35,4 +35,10 @@ describe Van do
     van.collect_working_bikes_from garage
     expect(van.bikes).to eq([working_bike])
   end
+
+  it 'releases working bikes at the station' do
+    allow(docking_station).to receive(:accept)
+    van.release_bikes_to docking_station
+    expect(van.bikes).not_to eq([working_bike])
+  end
 end
