@@ -7,4 +7,5 @@ describe DockingStation do
   it 'allows setting a default capacity on initialising' do
     expect(station.capacity).to eq(123)
   end
+
 end

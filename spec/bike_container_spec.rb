@@ -1,8 +1,17 @@
-require 'container_holder'
+require 'bike_container'
+
+class BikeHolder
+  include BikeContainer
+
+  def initialize
+    @bikes = []
+    @capacity = 10
+  end
+end
 
 describe BikeContainer do
 
-  let(:holder) { ContainerHolder.new }
+  let(:holder) { BikeHolder.new }
   let(:capacity) { 10 }
   let(:bike) { double :bike, broken?: false }
   let(:broken_bike) { double :broken_bike, broken?: true }
@@ -19,6 +28,11 @@ describe BikeContainer do
     expect(holder.bike_count).to eq(0)
   end
 
+  it 'knows when it is empty' do
+    expect(holder.bike_count).to eq(0)
+    expect { holder.release(bike) }.to raise_error('No bikes available')
+  end
+
   it 'knows when it is full' do
     expect(holder).not_to be_full
     fill_holder
@@ -30,11 +44,11 @@ describe BikeContainer do
     expect { holder.dock(bike) }.to raise_error('Station is full')
   end
 
-  it 'provides the list of available bikes' do
+  it 'provides the list of working bikes' do
     working_bike = bike
     holder.dock(working_bike)
     holder.dock(broken_bike)
-    expect(holder.available_bikes).to eq([working_bike])
+    expect(holder.working_bikes).to eq([working_bike])
   end
 
   def fill_holder

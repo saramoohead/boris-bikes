@@ -19,6 +19,7 @@ module BikeContainer
   end
 
   def release(bike)
+    fail 'No bikes available' if empty?
     bikes.delete(bike)
   end
 
@@ -26,7 +27,11 @@ module BikeContainer
     true if bike_count >= @capacity
   end
 
-  def available_bikes
+  def empty?
+    true if bike_count == 0
+  end
+
+  def working_bikes
     # Storing this list in a new array would be duplication.
     # I can just call the method on my existing data set when needed.
     # Use what you have in the simplest form.
