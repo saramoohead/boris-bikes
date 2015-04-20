@@ -11,7 +11,7 @@ end
 
 describe BikeContainer do
 
-# TO DO: only accept an instance of Bike class
+  # TO DO: only accept an instance of Bike class
 
   let(:holder) { BikeHolder.new }
   let(:capacity) { 10 }

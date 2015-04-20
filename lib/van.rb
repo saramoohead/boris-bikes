@@ -17,7 +17,7 @@ class Van
 
   def collect_working_bikes_from location
     location.bikes.each do |bike|
-      transfer_from(bike, location) if !bike.broken?
+      transfer_from(bike, location) unless bike.broken?
     end
   end
 
