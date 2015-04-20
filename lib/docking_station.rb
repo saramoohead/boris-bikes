@@ -13,6 +13,7 @@ class DockingStation
   end
 
   def dock(bike)
+    fail 'Station is full' if full?
     @station << bike
   end
 
