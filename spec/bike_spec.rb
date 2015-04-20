@@ -1,3 +1,5 @@
+require 'bike'
+
 describe Bike do
   it 'when created should not be broken' do
     the_bike = Bike.new
