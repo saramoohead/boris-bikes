@@ -6,7 +6,7 @@ describe Van do
   let(:working_bike) { double :working_bike, broken?: false }
   let(:broken_bike) { double :broken_bike, broken?: true }
   let(:docking_station) { double :docking_station, bikes: ([working_bike, broken_bike]) }
-  let(:garage) { double :gargae }
+  let(:garage) { double :garage, bikes: ([working_bike, broken_bike]) }
 
   it 'has a capacity when created' do
     expect(van.capacity).to be(6)
@@ -28,5 +28,11 @@ describe Van do
     allow(garage).to receive(:accept).with broken_bike
     van.release_bikes_to garage
     expect(van.bikes).not_to eq([broken_bike])
+  end
+
+  it 'collects fixed bikes from a garage' do
+    allow(garage).to receive(:release).with working_bike
+    van.collect_working_bikes_from garage
+    expect(van.bikes).to eq([working_bike])
   end
 end

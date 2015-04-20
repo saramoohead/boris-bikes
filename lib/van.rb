@@ -15,6 +15,12 @@ class Van
     end
   end
 
+  def collect_working_bikes_from location
+    location.bikes.each do |bike|
+      transfer_from(bike, location) if !bike.broken?
+    end
+  end
+
   def release_bikes_to location
     bikes.each do |bike|
       transfer_to(bike, location)
