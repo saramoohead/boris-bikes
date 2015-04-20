@@ -6,7 +6,7 @@ describe Van do
   let(:working_bike) { double :working_bike, broken?: false }
   let(:broken_bike) { double :broken_bike, broken?: true }
   let(:docking_station) { double :docking_station, bikes: ([working_bike, broken_bike]) }
-  let(:garage) { Garage.new(capacity: 30) }
+  let(:garage) { double :gargae }
 
   it 'has a capacity when created' do
     expect(van.capacity).to be(6)
@@ -25,7 +25,8 @@ describe Van do
 
   it 'releases broken bikes at the garage' do
     van.accept(broken_bike)
-    van.release_broken_bikes_to garage
+    allow(garage).to receive(:accept).with broken_bike
+    van.release_bikes_to garage
     expect(van.bikes).not_to eq([broken_bike])
   end
 end

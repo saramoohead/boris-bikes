@@ -15,7 +15,7 @@ class Van
     end
   end
 
-  def release_broken_bikes_to(location)
+  def release_bikes_to(location)
     bikes.each do |bike|
       release(bike)
       location.accept(bike)
