@@ -1,9 +1,11 @@
 class DockingStation
   attr_reader :station, :station_capacity
 
-  def initialize
+  DEFAULT_CAPACITY = 20
+
+  def initialize(options = {})
     @station = []
-    @station_capacity = 20
+    @capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
   end
 
   def bike_count
@@ -19,6 +21,6 @@ class DockingStation
   end
 
   def full?
-    true if @station.count >= @station_capacity
+    true if @station.count >= @capacity
   end
 end
