@@ -1,5 +1,6 @@
 module BikeContainer
   attr_accessor :capacity
+  attr_reader :bikes
 
   def bikes
     @bikes ||= []
@@ -13,8 +14,8 @@ module BikeContainer
     bikes.count
   end
 
-  def dock(bike)
-    fail 'Station is full' if full?
+  def accept(bike)
+    fail "#{self.class} is full" if full?
     bikes << bike
   end
 
@@ -36,5 +37,9 @@ module BikeContainer
     # I can just call the method on my existing data set when needed.
     # Use what you have in the simplest form.
     bikes.reject { |bike| bike.broken? }
+  end
+
+  def broken_bikes
+    bikes.select { |bike| bike.broken? }
   end
 end

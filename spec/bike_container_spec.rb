@@ -18,12 +18,12 @@ describe BikeContainer do
 
   it 'can store a bike' do
     expect(holder.bike_count).to eq(0)
-    holder.dock(bike)
+    holder.accept(bike)
     expect(holder.bike_count).to eq(1)
   end
 
   it 'can release a bike' do
-    holder.dock(bike)
+    holder.accept(bike)
     holder.release(bike)
     expect(holder.bike_count).to eq(0)
   end
@@ -34,24 +34,29 @@ describe BikeContainer do
   end
 
   it 'knows when it is full' do
-    expect(holder).not_to be_full
     fill_holder
     expect(holder).to be_full
   end
 
   it 'will not accept a bike if it is full' do
     fill_holder
-    expect { holder.dock(bike) }.to raise_error('Station is full')
+    expect { holder.accept(bike) }.to raise_error('BikeHolder is full')
   end
 
   it 'provides the list of working bikes' do
     working_bike = bike
-    holder.dock(working_bike)
-    holder.dock(broken_bike)
+    holder.accept(working_bike)
+    holder.accept(broken_bike)
     expect(holder.working_bikes).to eq([working_bike])
   end
 
+  it 'provides the list of broken bikes' do
+    holder.accept(bike)
+    holder.accept(broken_bike)
+    expect(holder.broken_bikes).to eq([broken_bike])
+  end
+
   def fill_holder
-    capacity.times { holder.dock(bike) }
+    capacity.times { holder.accept(bike) }
   end
 end

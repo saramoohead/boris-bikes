@@ -5,3 +5,14 @@ Build the Boris Bikes system where bikes are stored in docking stations, only re
 * BDD/TDD
 * Ruby
 * RSpec
+
+Helping guides:
+
+Modules (from 39 minutes):
+https://www.youtube.com/watch?v=eNh29krrC2Q
+
+Doubles:
+https://www.youtube.com/watch?v=AqOVuOkeIiA
+
+Shared behaviour and super:
+https://www.youtube.com/watch?v=WOrL7zJaDO0
