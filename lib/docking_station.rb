@@ -1,3 +1,5 @@
+require_relative 'bike'
+
 class DockingStation
   attr_reader :station, :station_capacity
 
@@ -23,5 +25,11 @@ class DockingStation
 
   def full?
     true if bike_count >= @capacity
+  end
+
+  def available_bikes
+    # I don't need to store this information. I can just call it when needed.
+    # So don't create a new array. Just use what you have in the simplest form.
+    @station.reject { |bike| bike.broken? }
   end
 end
