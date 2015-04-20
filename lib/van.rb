@@ -9,21 +9,25 @@ class Van
     self.capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
   end
 
-  def collect_broken_bikes_from(location)
+  def collect_broken_bikes_from location
     location.bikes.each do |bike|
-      transfer_from(bike, from: location) if bike.broken?
+      transfer_from(bike, location) if bike.broken?
     end
   end
 
-  def release_bikes_to(location)
+  def release_bikes_to location
     bikes.each do |bike|
-      release(bike)
-      location.accept(bike)
+      transfer_to(bike, location)
     end
   end
 
-  def transfer_from bike, from: location
-    from.release(bike)
-    accept bike
+  def transfer_from bike, location
+    location.release(bike)
+    accept(bike)
+  end
+
+  def transfer_to bike, location
+    release(bike)
+    location.accept(bike)
   end
 end

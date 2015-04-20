@@ -33,9 +33,6 @@ module BikeContainer
   end
 
   def working_bikes
-    # Storing this list in a new array would be duplication.
-    # I can just call the method on my existing data set when needed.
-    # Use what you have in the simplest form.
     bikes.reject { |bike| bike.broken? }
   end
 
