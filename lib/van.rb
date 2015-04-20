@@ -11,9 +11,12 @@ class Van
 
   def collect_broken_bikes_from(location)
     location.bikes.each do |bike|
-      # but is station right? where does that come from?
-      location.release(bike) if bike.broken?
-      accept bike if bike.broken?
+      transfer(bike, to: location) if bike.broken?
     end
+  end
+
+  def transfer bike, to: location
+      to.release(bike)
+      accept bike
   end
 end
