@@ -1,4 +1,5 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
-gem "rspec"
-gem "rubocop"
+gem 'rspec'
+gem 'rubocop'
+gem 'rake'
