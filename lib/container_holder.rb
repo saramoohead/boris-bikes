@@ -1,9 +1,10 @@
+# created to test BikeContainer module
 require_relative 'bike_container'
 
-class DockingStation
+class ContainerHolder
   include BikeContainer
 
-  DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 10
 
   def initialize(options = {})
     self.capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
