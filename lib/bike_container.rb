@@ -1,5 +1,5 @@
 module BikeContainer
-  attr_writer :capacity
+  attr_accessor :capacity
 
   def bikes
     @bikes ||= []

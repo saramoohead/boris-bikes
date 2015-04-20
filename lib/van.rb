@@ -1,13 +1,11 @@
 require_relative 'bike_container'
 
-class DockingStation
+class Van
   include BikeContainer
 
-  DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 1
 
   def initialize(options = {})
     self.capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
   end
-
-  alias_method :available_bikes, :working_bikes
 end
