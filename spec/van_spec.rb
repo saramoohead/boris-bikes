@@ -18,7 +18,7 @@ describe Van do
 
   it 'removes broken bikes from a station when collecting' do
     # This docking station is not a real one. It cannot change. It will not pay attention to any method calls.
-    docking_station = double :docking_station, bikes: [working_bike, broken_bike]
+    docking_station = double :docking_station, bikes:([working_bike, broken_bike])
     # Since it cannot change, you have to tell it to receive the method BEFORE you call the method.
     expect(docking_station).to receive(:release).with broken_bike
     van.collect_broken_bikes_from docking_station

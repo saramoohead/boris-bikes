@@ -13,7 +13,7 @@ describe BikeContainer do
 
   let(:holder) { BikeHolder.new }
   let(:capacity) { 10 }
-  let(:bike) { double :bike, broken?: false }
+  let(:bike) { double :bike, broken?: false, :class => Bike }
   let(:broken_bike) { double :broken_bike, broken?: true }
 
   it 'can store a bike' do
@@ -26,6 +26,12 @@ describe BikeContainer do
     holder.accept(bike)
     holder.release(bike)
     expect(holder.bike_count).to eq(0)
+  end
+
+  xit 'will only accept a bike' do
+    banana = double :banana
+    # allow(bike).to receive(:class).with('Bike')
+    expect { holder.accept(banana) }.to raise_error('That is not a bike')
   end
 
   it 'knows when it is empty' do
